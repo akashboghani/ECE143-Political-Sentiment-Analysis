@@ -15,15 +15,15 @@ api = tweepy.API(auth)
 
 all_tweets = []
 twitter_handle = input("Enter twitter handle of user:")
-new_tweets = api.user_timeline(screen_name=twitter_handle, count=200)
+new_tweets = api.user_timeline(screen_name=twitter_handle, count=200, tweet_mode='extended')
 while(len(new_tweets) > 0):
     all_tweets.extend(new_tweets)
     last_id = all_tweets[-1].id - 1
-    new_tweets = api.user_timeline(screen_name=twitter_handle, count=200, max_id=last_id)
+    new_tweets = api.user_timeline(screen_name=twitter_handle, count=200, max_id=last_id, tweet_mode='extended')
     print("######## %d tweets downloaded ########" % len(all_tweets))
 
 
-outtweets = [[  tweet.id_str, tweet.created_at, tweet.text, tweet.favorite_count, tweet.retweet_count, 
+outtweets = [[  tweet.id_str, tweet.created_at, tweet.full_text, tweet.favorite_count, tweet.retweet_count, 
                 tweet.lang, tweet.user.id_str, tweet.user.name, tweet.user.screen_name, 
                 tweet.user.followers_count, tweet.user.friends_count, tweet.user.location, 
                 tweet.user.verified ] for tweet in all_tweets]
