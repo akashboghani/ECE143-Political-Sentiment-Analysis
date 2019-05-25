@@ -79,7 +79,7 @@ if __name__ == '__main__':
         tweet_df[i].insert(4, 'Polarity', None)
         tweet_df[i].insert(5, 'Subjectivity', None)
 
-        print("Cleaning tweets for " + str(i))
+        print('Cleaning tweets for ' + str(i))
 
         if(remove_other_langs == True):
             #filter out tweets that are not english
@@ -95,12 +95,12 @@ if __name__ == '__main__':
         #remove punctuations and short words
         remove_puncs(tweet_df[i], 3)
 
-        print("Calculating sentiment scores for " + str(i))
+        print('Calculating sentiment scores for ' + str(i))
 
         #find the sentiment scores for all the tweets
         tweet_df[i]['Polarity'], tweet_df[i]['Subjectivity'] = np.vectorize(find_sentiments)(tweet_df[i]['Clean_tweet'])
 
-        print("Updating the csv file for " + str(i))
+        print('Updating the csv file for ' + str(i))
         os.remove(str(i) + '_tweets.csv')
         tweet_df[i].to_csv(str(i) + '_tweets.csv', index=False, mode='w+', line_terminator='\n')
-        print("File updated: " + str(i) + '_tweets.csv')
+        print('File updated: ' + str(i) + '_tweets.csv')
