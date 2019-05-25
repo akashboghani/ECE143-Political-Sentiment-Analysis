@@ -21,7 +21,7 @@ def fetch_tweets(consumer_key=None, consumer_secret=None, access_key=None, acces
         new_tweets = api.user_timeline(screen_name=twitter_handle, count=200, max_id=last_id, tweet_mode='extended')
         print("######## %d tweets downloaded ########" % len(all_tweets))
     print("## Maximum possible tweets downloaded ##")
-    tweet_data = [[  tweet.id_str, tweet.created_at, tweet.full_text, tweet.retweet_count, 
+    tweet_data = [[  tweet.id_str, str(tweet.created_at).split(' ')[0], tweet.full_text, tweet.retweet_count, 
                     tweet.lang, tweet.user.id_str, tweet.user.name, tweet.user.screen_name, 
                     tweet.user.followers_count, tweet.user.friends_count, tweet.user.location, 
                     tweet.user.verified ] for tweet in all_tweets]
@@ -35,7 +35,7 @@ def write_file(tweet_data=None, twitter_handle=None):
     try:
         print("######## Writing data to file: #########")
         with open(twitter_handle + '_tweets.csv', 'w', encoding='utf8') as f:
-            writer = csv.writer(f)
+            writer = csv.writer(f, lineterminator='\n')
             writer.writerow(['Tweet ID', 'Date Created', 'Tweet', 'Retweets', 'Language', 'User ID', 
                             'User Name', 'User Twitter Handle', 'Follower Count', 'Friend Count',
                             'Location', 'Verified'])
@@ -47,7 +47,7 @@ def write_file(tweet_data=None, twitter_handle=None):
 
 
 if __name__ == '__main__':
-    with open('twitter-credentials.json') as cred_data:
+    with open('twiiter_credentials.json') as cred_data:
         login_info = json.load(cred_data)
     consumer_key = login_info['CONSUMER_KEY']
     consumer_secret = login_info['CONSUMER_SECRET']
