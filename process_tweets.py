@@ -4,6 +4,7 @@ import numpy as np
 from textblob import TextBlob
 from time import sleep
 import os
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
 def translate_tweets(df=None):
@@ -52,6 +53,7 @@ def remove_puncs(df, min_len):
     '''
     #remove punctuations
     df['Clean_tweet'] = df['Clean_tweet'].str.replace("[^a-zA-Z#]", " ")
+    df['Clean_tweet'] = df['Clean_tweet'].str.replace("https", "")
 
     #remove short words
     df['Clean_tweet'] = df['Clean_tweet'].apply(lambda x: ' '.join([w for w in x.split() if len(w)>min_len]))
@@ -62,8 +64,13 @@ def find_sentiments(Clean_tweet):
     '''
     INSERT DOCSTRING HERE
     '''
+    analyzer = SentimentIntensityAnalyzer()
     blob = TextBlob(Clean_tweet)
-    return blob.sentiment[0], blob.sentiment[1]
+    polarity, subjectivity = blob.sentiment
+    if polarity == 0:
+        vader_op = analyzer.polarity_scores(Clean_tweet)
+        polarity = vader_op['compound']
+    return polarity, subjectivity
 
 
 if __name__ == '__main__':
