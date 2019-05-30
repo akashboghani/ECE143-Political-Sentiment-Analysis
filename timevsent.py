@@ -60,7 +60,6 @@ class plot_time_v_sent:
 		for i in self.plot_df['Tweet'].index:
 			tweet = self.plot_df['Tweet'][i]
 			temp = self.f(tweet,6)
-			print(temp)
 			formatted.append(temp)
 		self.plot_df['Formatted Tweet'] = pd.Series(formatted,name='Formatted Tweet')
 
