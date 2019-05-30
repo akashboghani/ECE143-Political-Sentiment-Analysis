@@ -57,22 +57,21 @@ class plot_time_v_sent:
 		
 		#attempting to fix hovertext width by reformatting tweet
 		formatted = []
-		for i in self.plot_df['Tweet'].index:
-			tweet = self.plot_df['Tweet'][i]
+		for tweet in self.this_person['Tweet']:
 			temp = self.f(tweet,6)
 			formatted.append(temp)
-		self.plot_df['Formatted Tweet'] = pd.Series(formatted,name='Formatted Tweet')
-
+		self.this_person['Formatted Tweet'] = pd.DataFrame(formatted)
+		self.plot_df['Formatted Tweet'] = self.this_person.loc[max_locs]['Formatted Tweet']
 		#plots the day's max
 		p = px.scatter(self.plot_df,x="Date", y="Polarity",
-					size='Engagement',size_max=80,hover_data=["Tweet","Retweets","Favorites"],
-					opacity=.6,title=self.name+' Outreach vs. Polarity',color='Polarity')
+					size='Engagement',size_max=80,hover_data=["Formatted Tweet","Retweets","Favorites"],
+					opacity=.6,title=self.name+' Outreach vs. Polarity')
 		plot(p)
 
 		#plots all tweets
 		p2 = px.scatter(self.this_person,x="Date Created",y="Polarity",
-						size="Engagement",size_max=80,hover_data=["Tweet","Retweets","Favorites"],
-						opacity=.6,title=self.name+' Outreach vs. Polarity',color='Polarity')
+						size="Engagement",size_max=80,hover_data=["Formatted Tweet","Retweets","Favorites"],
+						opacity=.6,title=self.name+' Outreach vs. Polarity')
 		plot(p2)
 
 
@@ -137,7 +136,7 @@ class plot_time_v_sent:
 			i+=1
 		result +=' '.join(split[(i-1)*n:])
 
-		return list(result)
+		return result
 
 #to load tweet_df so we don't have to rescrape every time
 if __name__ == '__main__':
