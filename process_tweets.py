@@ -34,6 +34,7 @@ def only_english(df=None):
     for entry in range(len(df)):
         if df['Language'][entry] != 'en':
             df = df.drop([entry])
+    df.reset_index(inplace=True)
     return df
 
 
@@ -81,7 +82,7 @@ if __name__ == '__main__':
     with open('twitter_handles.txt') as f:
         polit_list = f.read().rstrip('\n').split('\n')
     for i in polit_list:
-        tweet_df[i] = pd.read_csv(i + '_tweets.csv')
+        tweet_df[i] = pd.read_csv('data/' + i + '_tweets.csv')
         tweet_df[i].insert(3, 'Clean_tweet', None)
         tweet_df[i].insert(4, 'Polarity', None)
         tweet_df[i].insert(5, 'Subjectivity', None)
@@ -108,6 +109,6 @@ if __name__ == '__main__':
         tweet_df[i]['Polarity'], tweet_df[i]['Subjectivity'] = np.vectorize(find_sentiments)(tweet_df[i]['Clean_tweet'])
 
         print('Updating the csv file for ' + str(i))
-        os.remove(str(i) + '_tweets.csv')
-        tweet_df[i].to_csv(str(i) + '_tweets.csv', index=False, mode='w+', line_terminator='\n')
+        os.remove('data/' + str(i) + '_tweets.csv')
+        tweet_df[i].to_csv('data/' + str(i) + '_tweets.csv', index=False, mode='w+', line_terminator='\n')
         print('File updated: ' + str(i) + '_tweets.csv')
