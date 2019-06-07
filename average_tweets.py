@@ -2,9 +2,9 @@ import pandas as pd
 from collections import defaultdict
 import csv
 import matplotlib.pyplot as plt
-%matplotlib notebook
+#%matplotlib notebook
 """
-Plotting the avaerage tweets of specific politicians which are of key interst, hence we form a list of politicians
+Plotting the average tweets of specific politicians which are of key interst, hence we form a list of politicians
 """
 def average_tweets(twitter_handles,politician):
     """ 
@@ -13,7 +13,7 @@ def average_tweets(twitter_handles,politician):
     average_tweet=defaultdict(float)
     for p in range(len(politician)):
         per_day=defaultdict(int)
-        data=pd.read_csv(twitter_handles[p])
+        data=pd.read_csv('data/' + twitter_handles[p])
         date=data['Date Created']
         for d in date:
             per_day[d]+=1
