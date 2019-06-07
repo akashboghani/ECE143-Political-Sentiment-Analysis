@@ -34,7 +34,7 @@ def write_file(tweet_data=None, twitter_handle=None):
     '''    
     try:
         print("######## Writing data to file: #########")
-        with open(twitter_handle + '_tweets.csv', 'w', encoding='utf8') as f:
+        with open('data/' + twitter_handle + '_tweets.csv', 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             writer.writerow(['Tweet ID', 'Date Created', 'Tweet', 'Retweets', 'Favorites', 'Language', 'User ID', 
                             'User Name', 'User Twitter Handle', 'Follower Count', 'Friend Count',
