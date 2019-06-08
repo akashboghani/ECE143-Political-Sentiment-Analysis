@@ -7,6 +7,7 @@ Twitter is the modern battleground of politics. This project aims to perform sen
 * Their support base 
 
 ##Requirements
+
 In order to run the code in this repository, you will need to install the following dependencies:
 * tweepy:
 `pip install tweepy`
