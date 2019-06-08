@@ -33,6 +33,10 @@ In order to run the code in this repository, you will need to install the follow
 
 ## File Structure
 
+#### Presentation
+* **Twitter Sentiment Analysis.pdf**
+This is the final presentation converted to pdf format for your reference.
+
 #### Demo
 * **Code_Demo.ipynb**
 This Jupyter notebook contains the demo. To run, clone the repository. Then, navigate to the repository in Terminal, and type `jupyter notebook`. Click on **Code_demo.ipynb** to run the demo.
