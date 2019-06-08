@@ -6,8 +6,7 @@ Twitter is the modern battleground of politics. This project aims to perform sen
 * Their stance on major issues
 * Their support base 
 
-##Requirements
-
+## Requirements
 In order to run the code in this repository, you will need to install the following dependencies:
 * tweepy:
 `pip install tweepy`
@@ -69,7 +68,7 @@ This python file contains functions for plotting the average tweets per day of t
 * **christchurch_shooting.py**
 This python file contains functions for plotting the comparison of the sentiment polarity of tweets with the average tweets during the christchurch shooting. 
 
-####Logistics and Data
+#### Logistics and Data
 * **twitter_credentials.json**
 This python file contains the configuration of the twitter developer  app for extracting the tweets. 
 
