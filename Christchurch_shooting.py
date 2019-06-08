@@ -10,10 +10,19 @@ plotly.offline.init_notebook_mode()
 '''
 Plotting the average tweets polarity and comparing it with the polraity of tweets during the Christchurch mosque shooting
 '''
-def Christchurch_shooting(dates, politician, twitter_handles):
-    """
-    To take the input of the dates and return the average polarity of tweets and during the event in a dictionary
-    """
+def Christchurch_shooting(dates=None, politician=None, twitter_handles=None):
+    '''
+    This function finds average polarity of tweets during a specified time period.
+    :param dates: the list of dates to be analysed in YYYY-MM-DD format
+    :param politician: the list of names of politicians to be analysed
+    :param twitter_handles: the list of file names from the dataset to be analysed
+    '''
+    assert isinstance(dates, list)
+    assert isinstance(politician, list)
+    assert all(isinstance(i, str) for i in politician)
+    assert isinstance(twitter_handles, list)
+    assert all(isinstance(i, str) for i in twitter_handles)
+
     average_polarity=defaultdict(float)
     event_polarity=defaultdict(float)
     for i in range(len(politician)):
@@ -39,6 +48,7 @@ def Christchurch_shooting(dates, politician, twitter_handles):
             avg_p_c=0
         event_polarity[politician[i]]=avg_p_c
     return average_polarity, event_polarity
+
 if __name__ == '__main__':
     twitter_handles=['tedcruz_tweets.csv','BarackObama_tweets.csv','HillaryClinton_tweets.csv','JebBush_tweets.csv','KamalaHarris_tweets.csv','RandPaul_tweets.csv','realDonaldTrump_tweets.csv','SenSanders_tweets.csv','SenWarren_tweets.csv']
     politician=['Ted Cruz','Barack Obama','Hillary Clinton','Jeb Bush','Kamala Harris','Rand Paul', 'Donald Trump','Bernie Sanders','Elizabeth Warren']

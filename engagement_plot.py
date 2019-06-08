@@ -5,9 +5,15 @@ import pandas as pd
 
 class plot_engagement:
 	'''
-		plot_engagement receives a dataframe and name of politician
+	An object of class plot_engagement receives a dataframe and name of politician and generates useful visualizations.
 	'''
-	def __init__(self,tweet_df,name):
+	def __init__(self,tweet_df=None,name=None):
+		'''
+		This function does precomputations and loading that will be used in other functions of this class.
+		:param tweet_df: A dictionary of dataframes corresponding to various politicians
+		:param name: The name of the politician to be analysed in the given object
+		:return: None
+		'''
 		assert isinstance(tweet_df,dict), "tweet_df must be a dictionary"
 		assert isinstance(name,str), "name must be string type"
 		if not name in tweet_df: raise ValueError("that politician does not exist in dataframe")
@@ -34,19 +40,26 @@ class plot_engagement:
 
 	def __repr__(self):
 		'''
-			returns instance data location
+		This function returns instance data location
+		:return: address of object created
 		'''
 		return "plot_engagement object at address "+hex(id(self))
 
 	def calc_engagement(self):
 		'''
-			Calculates engagement scores for a politician
+		This function calculates engagement scores for a politician
+		:return: None
 		'''
 		self.this_person['Engagement'] = ((2*self.this_person['Retweets'] + self.this_person['Favorites'])**2)
 
 		return
 
 	def create_plotly_df(self):
+		'''
+		This function creates and formats a Dataframe that will be used in subsequent plots.
+		:return: plot_df, a pandas Dataframe with tweets and some selected attributes
+		'''
+
 		self.calc_engagement()
 
 		#finds locations of max engagement
@@ -75,8 +88,10 @@ class plot_engagement:
 
 	def bubble_chart(self):
 		'''
-			bubble_chart plots engagement scatter plot for a politician
+		This function, bubble_chart plots the engagement vs polarity over time scatter plot for a politician.
+		:return: None, plot is displayed on screen
 		'''
+
 		#gathers and formates plotly dataframe
 		plot_df = self.create_plotly_df()
 
@@ -91,13 +106,17 @@ class plot_engagement:
 
 		return
 
-	def format_hovertext(self,string,n):
+	def format_hovertext(self,string=None,n=None):
 		'''
-			Receives: tweet (string) and integer n that dictates how many words to place line breaks
-			Returns: returns the formatted tweet 
-
-			inserts <br> tags (line breaks) in tweet to format hovertext in scatter plot
+		This function defines the hovertext behaviour to display in the bubble chart. Breaks up the tweet into chunks so it's visible.
+		:param string: The tweet to be displayed in hover text 
+		:param n: Integer that dictates how many words to place line breaks
+		:return: formatted tweet to be displayed in hovertext. 
 		'''
+		assert isinstance(string, str)
+		assert isinstance(n, int)
+		assert n > 0
+		
 		split=string.split()
 		i=1
 		result = ''
