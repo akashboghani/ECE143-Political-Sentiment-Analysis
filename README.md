@@ -33,23 +33,23 @@ In order to run the code in this repository, you will need to install the follow
 
 ## File Structure
 
-#### Presentation
+#### _Presentation_
 * **Twitter Sentiment Analysis.pdf**
 This is the final presentation converted to pdf format for your reference.
 
-#### Demo
+#### _Demo_
 * **Code_Demo.ipynb**
 This Jupyter notebook contains the demo. To run, clone the repository. Then, navigate to the repository in Terminal, and type `jupyter notebook`. Click on **Code_demo.ipynb** to run the demo.
 
-#### Data Collection
+#### _Data Collection_
 * **collect_data.py**
 This python code file fetches the tweets given the twitter handle of the politician and stores in a csv file.
 
-#### Data Processing
+#### _Data Processing_
 * **process_tweets.py**
 This python code file is used to process the tweets from the csv file by cleaning the data and adding the subjectivity and polarity.
 
-#### Data Visualization
+#### _Data Visualization_
 * **pie_scatter.py**
 This python file contains the functions to plot: 
     * Scatterplot of the average polarity and subjectivity of the tweets of the politicians. 
@@ -68,7 +68,7 @@ This python file contains functions for plotting the average tweets per day of t
 * **christchurch_shooting.py**
 This python file contains functions for plotting the comparison of the sentiment polarity of tweets with the average tweets during the christchurch shooting. 
 
-#### Logistics and Data
+#### _Logistics and Data_
 * **twitter_credentials.json**
 This python file contains the configuration of the twitter developer  app for extracting the tweets. 
 
