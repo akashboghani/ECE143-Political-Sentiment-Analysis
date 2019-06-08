@@ -2,6 +2,7 @@ import tweepy
 import json
 import csv
 import sys
+import os
 
 
 def fetch_tweets(consumer_key=None, consumer_secret=None, access_key=None, access_secret=None, twitter_handle=None):
@@ -55,7 +56,7 @@ def write_file(tweet_data=None, twitter_handle=None):
 
     try:
         print("######## Writing data to file: #########")
-        with open('data/' + twitter_handle + '_tweets.csv', 'w', encoding='utf8') as f:
+        with open(os.path.join('data', twitter_handle + '_tweets.csv'), 'w', encoding='utf8') as f:
             writer = csv.writer(f, lineterminator='\n')
             writer.writerow(['Tweet ID', 'Date Created', 'Tweet', 'Retweets', 'Favorites', 'Language', 'User ID', 
                             'User Name', 'User Twitter Handle', 'Follower Count', 'Friend Count',
