@@ -1,5 +1,11 @@
 # Group 9: Political Sentiment Analysis on Twitter
 
+## Team Members
+* Akash Boghani - aboghani@ucsd.edu
+* Khushboo Agrawal - khagrawa@ucsd.edu
+* Lina Yi - lkyi@ucsd.edu
+* Haoran Wu - haw004@ucsd.edu
+
 ## Objective
 Twitter is the modern battleground of politics. This project aims to perform sentiment analysis on the tweets of popular politicians, and find interesting correlations based on:
 * Their tweeting habits
